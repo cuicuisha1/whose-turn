@@ -1,0 +1,24 @@
+# Local toolchains, Python environments and caches
+tools/
+.venv/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+
+# Build products, generated packages and runtime data
+build/
+output/
+runs/
+*.o
+*.exe
+*.elf
+*.bin
+*.hex
+*.map
+
+# Local configuration and desktop metadata
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db

@@ -1,24 +1,40 @@
-# 毕业设计｜Whose Turn? /《轮到谁？》
+# Whose Turn?
 
-**当前项目边界（2026-11-10）：实体模型保留四轮，软件移除四轮控制。** 根据导师反馈，将开发与研究集中在头部转向、注意分配和参与者对互动轮次的理解与协商。四轮是机器人身体和底座的一部分，不作为本轮交互动作或评价变量。
+Creative Robotics graduate project for the UAL Creative Computing Institute.
 
-详细决策见 [四轮结构与软件范围调整](01_论文与主题/四轮结构与软件范围调整_2026-11-10.md)。
+*Whose Turn?* stages an encounter between a robot and two visitors. While the first visitor is answering a question, a second visitor arrives. The robot briefly turns towards the newcomer, pauses, then turns back to the first visitor. It later turns towards the second visitor and gives them a turn to speak. The project asks how visitors tell whether a turn of the head acknowledges their presence or invites them to speak.
 
-| 内容 | 当前入口 |
+The mechanical head uses orientation and timing to cue attention. The prototype has two versions: `head_only` uses the brief turn alone, and `explicit` adds a spoken welcome and explains whose turn it is before the same movement. An operator cues the stages of the encounter from the console. The physical design retains its four wheels as part of the body, while the firmware controls only the head.
+
+## Run the demo
+
+From the repository root, run the following with Python 3.10 or later. The default demo uses a virtual head, requires no Python packages or hardware, and runs without sound.
+
+```sh
+cd "project code"
+python -m whoseturn --demo
+python -m whoseturn --demo --variant explicit
+python -m unittest discover -s whoseturn/tests -v
+```
+
+The demo plays through a scripted encounter and ends in `DONE`. Each run saves a configuration snapshot, event log and summary under `project code/build/whoseturn/runs/`. These runs are marked as synthetic. To hear the included English preview prompts, add `--audio wav --audio-dir whoseturn/audio_preview` to the demo command. WAV playback uses built-in Windows support or `aplay` on Linux.
+
+## Components and dependencies
+
+| Component | Requirements and entry point |
 | --- | --- |
-| 研究定位与双策略安排 | [Whose Turn? 研究目录](01_论文与主题/WhoseTurn_2026-11-05/README.md) |
-| 实验程序、模拟与操作方法 | [whoseturn](project%20code/whoseturn/README.md) |
-| 当前软件与构建入口 | [project code](project%20code/README.md) |
-| 头部固件、串口协议与验收 | [头部控制说明](project%20code/firmware/README.md) |
-| 本轮硬件使用边界 | [保留四轮的头部交互接线范围](03_硬件方案与接线/头部交互_四轮仅结构_2026-11-10.md) |
-| 实体模型、内部布局与云台 CAD | [机械结构与 CAD](04_机械结构与CAD/README.md) |
-| 汇报与展示材料 | [汇报目录](02_汇报与展示/README.md) |
-| 历史资料 | [淘汰与过程记录](（淘汰）/README.md) |
+| Study prototype | The [Whose Turn? operator guide](project%20code/whoseturn/README.md) covers both variants, the interactive console and log files. |
+| Arduino head controller | The [firmware guide](project%20code/firmware/README.md) covers the Uno R4 WiFi, two servos and the `head-1` USB serial protocol. Install Arduino CLI and run `arduino-cli core install arduino:renesas_uno@1.6.0` and `arduino-cli lib install ArduinoJson@6.21.5`, then run `python scripts/build_firmware.py` from `project code` to compile. |
+| Native firmware simulator | Use a C++17 compiler and set `ARDUINOJSON_INCLUDE` to the `src` directory of ArduinoJson 6.21.5. The Windows helper `python scripts/setup_native.py` can install Zig. From `project code`, run `python scripts/test_phase1.py`, then `python -m whoseturn --demo --mode firmware_sim` to exercise the production protocol against a simulated hardware layer. |
+| Serial host tools | From `project code`, install `python -m pip install -r host/requirements.txt` for USB serial access. The firmware simulator runs without this dependency. |
+| Jetson vision and dashboard | The [Jetson guide](project%20code/jetson/README.md) describes a separate RGB-D vision pipeline. Its [requirements](project%20code/jetson/requirements.txt) cover NumPy. The guide describes platform-specific OpenCV and RealSense setup. Run `python -m jetson.check` from `project code` for the offline checks. |
 
-当前 Arduino 固件使用 USB 串口及 D10/D11 双舵机，协议版本为 `head-1`。已移除四轮目标、编码器、CPR、驱动板 I²C、drive 模式和底盘零速模块；统一程序状态改为 schema 2。旧四轮指令会被拒绝。视觉与交互流程保留，统一 `jetson.robot` 的头部执行仍是虚拟模式，`whoseturn` 是独立研究入口。
+## Design and research materials
 
-本轮没有修改 CAD、轮子、轮架或其他实体结构，也没有更改历史图纸与 PPT 内容。11 月 8 日 TT 四轮接线图及原 v0.8.1 电池版均为历史设计，不能作为本轮已启用轮驱动的依据。无电池、拖线供电方向延续；轮电机动力和驱动控制不纳入当前运行系统。
+- [Creative Robotics presentation (English)](02_汇报与展示/WhoseTurn_CreativeRobotics_12页_2026-11-05/Whose_Turn_Creative_Robotics_12_Slides_EN.pptx)
+- [Research plan, study protocol and bibliography (Chinese)](01_论文与主题/WhoseTurn_2026-11-05/README.md)
+- [Pan–tilt head CAD preview](04_机械结构与CAD/摄像头云台_检查与优化_2026-11-09/预览/04_优化装配细节.png) and [chest display and speaker CAD preview](04_机械结构与CAD/MOX_胸屏与扬声器固定件_2026-11-18/预览/胸屏与扬声器装配.png)
+- [Hardware scope and wiring notes (Chinese)](03_硬件方案与接线/头部交互_四轮仅结构_2026-11-10.md)
+- [Software validation record (Chinese)](project%20code/四轮移除_验证记录_2026-11-10.md)
 
-修改前软件已保存为 [四轮软件移除前快照](（淘汰）/04_通信代码原始版/四轮软件移除前_2026-11-10.zip)。历史版本、旧研究过程和模型资料继续保留。
-
-本轮仅完成本机编译与软件验证，尚未烧录、实物验收或开展参与者研究。验证细节见 [本轮记录](project%20code/四轮移除_验证记录_2026-11-10.md)。
+The available evidence covers software tests and firmware compilation. Physical commissioning and participant sessions are pending in the project records. The supplied firmware configuration keeps physical servo operation disabled until the power wiring and servo limits have been verified.

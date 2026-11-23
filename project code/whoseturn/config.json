@@ -1,0 +1,15 @@
+{
+  "version": "WT-01",
+  "calibrated": false,
+  "calibration_record": "",
+  "pan_min_us": 1400,
+  "pan_max_us": 1600,
+  "neutral_us": 1500,
+  "a_us": 1460,
+  "b_us": 1540,
+  "tilt_us": 1500,
+  "slew_us_per_s": 80,
+  "ack_hold_s": 1.0,
+  "settle_s": 0.4,
+  "max_session_s": 1200
+}

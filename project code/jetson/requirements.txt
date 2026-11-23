@@ -1,0 +1,6 @@
+# Use the Jetson system Python (3.10+). Keep distro OpenCV via --system-site-packages.
+# numpy 1.x avoids ABI conflicts with the OpenCV supplied by many JetPack images.
+numpy>=1.24,<2
+# Install pyrealsense2 separately after identifying the JetPack/Python environment.
+# OpenCV: on Jetson prefer sudo apt install python3-opencv; do not replace CUDA packages blindly.
+# YOLO is optional. Follow the version-matched Jetson/PyTorch instructions in README.md.
