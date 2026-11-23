@@ -1,7 +1,0 @@
-{
-  "vision": {"source": "realsense", "detector": "hog", "serial": ""},
-  "control": {"mode": "virtual"},
-  "arduino": {"mode": "disabled", "port": ""},
-  "interface": {"enabled": true, "host": "127.0.0.1", "port": 8765},
-  "audio": {"mode": "text"}
-}

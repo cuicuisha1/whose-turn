@@ -1,0 +1,22 @@
+{
+  "mox72/vendor/config.py": {
+    "source": "phase72_sources/existing_project/experiment/config.py",
+    "sha256": "ce22d6b4069b0e73f575f2256799701637274c8b65e71c02873527006361a454",
+    "modified": false
+  },
+  "mox72/vendor/policies.py": {
+    "source": "phase72_sources/existing_project/experiment/policies.py",
+    "sha256": "c4b0a27b8b12e338846207e0637a03787b19386dbe77700308e57e2425b4649f",
+    "modified": false
+  },
+  "mox72/vendor/live_audio.py": {
+    "source": "phase72_sources/existing_project/experiment/live_audio.py",
+    "sha256": "ae9ba59e90904243f631e1c3c772255ac66e1f18fd88c117c87e42349aa40b1b",
+    "modified": false
+  },
+  "mox72/vendor/face_tracking_helpers.py": {
+    "source": "phase72_sources/hardware/hardware_code_audit/reviewed/face_tracking_helpers.py",
+    "sha256": "570f66448adc2de74c0fa985434a7342a295a48483ccdb6c36d163c75597a5a6",
+    "modified": false
+  }
+}

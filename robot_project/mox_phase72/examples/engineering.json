@@ -1,0 +1,21 @@
+{
+  "pan_a_base": 45.0,
+  "pan_b_base": -45.0,
+  "tilt_base": 0.0,
+  "pan_correction_limit": 10.0,
+  "tilt_limit": 25.0,
+  "pan_sign": -1,
+  "tilt_sign": null,
+  "a_speed": 20.0,
+  "b_speed": 60.0,
+  "main_speed": 40.0,
+  "stable_duration_s": 2.0,
+  "stable_span_m": 0.05,
+  "fixed_delay_s": 1.0,
+  "pause_s": 0.6,
+  "max_wait_s": 3.0,
+  "hold_s": 0.5,
+  "observation_window_s": 5.0,
+  "max_step_deg": 4.0,
+  "face_ema_alpha": 0.35
+}

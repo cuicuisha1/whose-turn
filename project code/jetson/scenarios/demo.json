@@ -1,8 +1,0 @@
-[
-  {"at_s": 2.0, "kind": "text", "text": "你好"},
-  {"at_s": 3.0, "kind": "text", "text": "你能看见我吗"},
-  {"at_s": 4.0, "kind": "pause"},
-  {"at_s": 5.0, "kind": "resume"},
-  {"at_s": 6.0, "kind": "text", "text": "我离你多远"},
-  {"at_s": 9.0, "kind": "shutdown"}
-]

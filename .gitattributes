@@ -1,0 +1,2 @@
+# The vendor provenance test checks exact source bytes.
+robot_project/mox_phase72/mox72/vendor/*.py -text

@@ -9,6 +9,10 @@ __pycache__/
 build/
 output/
 runs/
+camera_test/
+models/
+*.onnx
+*.engine
 *.o
 *.exe
 *.elf

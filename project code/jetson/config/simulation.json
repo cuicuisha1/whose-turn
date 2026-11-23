@@ -1,7 +1,0 @@
-{
-  "vision": {"source": "simulation", "detector": "synthetic"},
-  "control": {"mode": "virtual"},
-  "arduino": {"mode": "disabled"},
-  "interface": {"enabled": true, "host": "127.0.0.1", "port": 8765},
-  "audio": {"mode": "text"}
-}
